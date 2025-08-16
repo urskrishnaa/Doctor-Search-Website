@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+  <nav class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold text-blue-600">CareFinder</a>
+      <div class="space-x-4">
+        <a href="find-doctors.html">Find Doctors</a>
+        <a href="specialties.html">Specialties</a>
+        <a href="clinics.html">Clinics</a>
+        <a href="faq.html">FAQ</a>
+        <a href="login.html">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow">
+    <h1 class="text-2xl font-bold mb-6">Book an Appointment</h1>
+    <div id="doctorInfo" class="mb-6"></div>
+    <form id="appointmentForm" class="space-y-4">
+      <div>
+        <label for="name" class="block mb-1">Your Name</label>
+        <input type="text" id="name" name="name" required class="w-full px-3 py-2 border rounded">
+      </div>
+      <div>
+        <label for="email" class="block mb-1">Email</label>
+        <input type="email" id="email" name="email" required class="w-full px-3 py-2 border rounded">
+      </div>
+      <div>
+        <label for="date" class="block mb-1">Preferred Date</label>
+        <input type="date" id="date" name="date" required class="w-full px-3 py-2 border rounded">
+      </div>
+      <div class="flex items-center space-x-2">
+        <div class="flex-grow">
+          <label for="time" class="block mb-1">Preferred Time</label>
+          <input type="time" id="time" name="time" required class="w-full px-3 py-2 border rounded">
+        </div>
+        <div>
+          <label for="ampm" class="block mb-1">AM/PM</label>
+          <select id="ampm" name="ampm" required class="px-3 py-2 border rounded">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Book Appointment</button>
+    </form>
+  </main>
+
+  <script>
+    // Get doctor info from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const doctorName = urlParams.get('doctor');
+    const specialty = urlParams.get('specialty');
+
+    // Display doctor info
+    const doctorInfo = document.getElementById('doctorInfo');
+    if (doctorName && specialty) {
+      doctorInfo.innerHTML = `<p class="text-lg">Booking appointment with <strong>${doctorName}</strong> (${specialty})</p>`;
+    }
+
+    // Handle form submission
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Appointment booked successfully!');
+      // Here you would typically send the form data to a server
+    });
+  </script>
+</body>
+</html>

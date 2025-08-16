@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Doctors</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold text-blue-600">CareFinder</a>
+      <div class="space-x-4">
+        <a href="find-doctors.html" class="text-blue-600">Find Doctors</a>
+        <a href="specialties.html">Specialties</a>
+        <a href="clinics.html">Clinics</a>
+        <a href="faq.html">FAQ</a>
+        <a href="login.html">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  
+<!-- Hero Section -->
+<!-- Hero Section -->
+<section class="bg-blue-50 py-10 text-center">
+  <h1 class="text-4xl font-bold mb-4">Find the Best Doctors Near You</h1>
+  <p class="mb-6 text-gray-600">Search by specialty, location, and availability.</p>
+</section>
+  
+
+<!-- Search Section -->
+<section class="max-w-3xl mx-auto px-4 py-8">
+  <div class="flex items-center justify-center">
+    <input type="text" id="searchInput" placeholder="Search for doctors or specialties..." class="px-4 py-2 border rounded-l-lg w-2/3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <button id="searchButton" class="px-6 py-2 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700 transition duration-300">Search</button>
+  </div>
+</section>
+
+  <!-- Doctors List -->
+  <section class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-6">
+    <div class="bg-white rounded-lg shadow p-4 text-center">
+      <img src="https://plus.unsplash.com/premium_photo-1661580574627-9211124e5c3f?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-32 h-32 rounded-full mx-auto mb-4" alt="">
+      <h2 class="text-lg font-bold">Dr. Asha Patel</h2>
+      <p class="text-gray-500">Cardiologist</p>
+      <a href="book-appointment.html?doctor=Dr.%20Asha%20Patel&specialty=Cardiologist" class="mt-4 px-4 py-2 bg-green-500 text-white rounded inline-block">Book Appointment</a>
+    </div>
+    <div class="bg-white rounded-lg shadow p-4 text-center">
+      <img src="https://images.unsplash.com/photo-1637059824899-a441006a6875?q=80&w=452&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-32 h-32 rounded-full mx-auto mb-4" alt="">
+      <h2 class="text-lg font-bold">Dr. Rahul Singh</h2>
+      <p class="text-gray-500">Orthopedic Surgeon</p>
+     <a href="book-appointment.html?doctor=Dr.%20Asha%20Patel&specialty=Cardiologist" class="mt-4 px-4 py-2 bg-green-500 text-white rounded inline-block">Book Appointment</a>
+    </div>
+    <div class="bg-white rounded-lg shadow p-4 text-center">
+      <img src="https://plus.unsplash.com/premium_photo-1661777828441-986ac014eb74?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-32 h-32 rounded-full mx-auto mb-4" alt="">
+      <h2 class="text-lg font-bold">Dr. Meena Joshi</h2>
+      <p class="text-gray-500">Dentist</p>
+     <a href="book-appointment.html?doctor=Dr.%20Asha%20Patel&specialty=Cardiologist" class="mt-4 px-4 py-2 bg-green-500 text-white rounded inline-block">Book Appointment</a>
+    </div>
+     <div class="bg-white rounded-lg shadow p-4 text-center">
+      <img src="https://plus.unsplash.com/premium_photo-1682089144957-f48bbcf706b2?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-32 h-32 rounded-full mx-auto mb-4" alt="">
+      <h2 class="text-lg font-bold">Dr. Meera Rao </h2>
+      <p class="text-gray-500">Neurologist</p>
+      <a href="book-appointment.html?doctor=Dr.%20Asha%20Patel&specialty=Cardiologist" class="mt-4 px-4 py-2 bg-green-500 text-white rounded inline-block">Book Appointment</a>
+    </div>
+     <div class="bg-white rounded-lg shadow p-4 text-center">
+      <img src="https://images.unsplash.com/photo-1659353887238-d6c8506a1b5b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-32 h-32 rounded-full mx-auto mb-4" alt="">
+      <h2 class="text-lg font-bold">Dr. Aisha Khan</h2>
+      <p class="text-gray-500">Dermatology</p>
+     <a href="book-appointment.html?doctor=Dr.%20Asha%20Patel&specialty=Cardiologist" class="mt-4 px-4 py-2 bg-green-500 text-white rounded inline-block">Book Appointment</a>
+    </div>
+     <div class="bg-white rounded-lg shadow p-4 text-center">
+      <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-32 h-32 rounded-full mx-auto mb-4" alt="">
+      <h2 class="text-lg font-bold">Dr. Rohan Mehta</h2>
+      <p class="text-gray-500">Cardiology</p>
+      <a href="book-appointment.html?doctor=Dr.%20Asha%20Patel&specialty=Cardiologist" class="mt-4 px-4 py-2 bg-green-500 text-white rounded inline-block">Book Appointment</a>
+    </div>
+     <div class="bg-white rounded-lg shadow p-4 text-center">
+      <img src="https://images.unsplash.com/photo-1706958581603-dffa91fec580?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-32 h-32 rounded-full mx-auto mb-4" alt="">
+      <h2 class="text-lg font-bold">Dr. Neha Patil</h2>
+      <p class="text-gray-500">Pediatrics</p>
+      <a href="book-appointment.html?doctor=Dr.%20Asha%20Patel&specialty=Cardiologist" class="mt-4 px-4 py-2 bg-green-500 text-white rounded inline-block">Book Appointment</a>
+    </div>
+    <div class="bg-white rounded-lg shadow p-4 text-center">
+      <img src="https://images.unsplash.com/photo-1659353887977-c310d90c751a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"class="w-32 h-32 rounded-full mx-auto mb-4" alt="">
+      <h2 class="text-lg font-bold">Dr. Asha Patel</h2>
+      <p class="text-gray-500">Cardiologist</p>
+      <a href="book-appointment.html?doctor=Dr.%20Asha%20Patel&specialty=Cardiologist" class="mt-4 px-4 py-2 bg-green-500 text-white rounded inline-block">Book Appointment</a>
+    </div>
+
+    <div class="bg-white rounded-lg shadow p-4 text-center">
+      <img src="https://plus.unsplash.com/premium_photo-1677165653258-600290a50dd3?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"class="w-32 h-32 rounded-full mx-auto mb-4" alt="">
+      <h2 class="text-lg font-bold">Dr. Kavya Nair</h2>
+      <p class="text-gray-500">Gynecology</p>
+      <a href="book-appointment.html?doctor=Dr.%20Asha%20Patel&specialty=Cardiologist" class="mt-4 px-4 py-2 bg-green-500 text-white rounded inline-block">Book Appointment</a>
+    </div>     
+    <div class="bg-white rounded-lg shadow p-4 text-center">
+      <img src="https://images.unsplash.com/photo-1659353887977-c310d90c751a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"class="w-32 h-32 rounded-full mx-auto mb-4" alt="">
+      <h2 class="text-lg font-bold">Dr. Arjun Singh</h2>
+      <p class="text-gray-500">Orthopedics</p>
+      <a href="book-appointment.html?doctor=Dr.%20Asha%20Patel&specialty=Cardiologist" class="mt-4 px-4 py-2 bg-green-500 text-white rounded inline-block">Book Appointment</a>
+    </div>
+    </section>
+  <script>
+  const searchInput = document.getElementById('searchInput');
+  const searchButton = document.getElementById('searchButton');
+  const doctorsList = document.getElementById('doctorsList');
+  const doctorCards = doctorsList.querySelectorAll('.bg-white');
+
+  function performSearch() {
+    const searchTerm = searchInput.value.toLowerCase();
+    let resultsFound = false;
+
+    doctorCards.forEach(card => {
+      const doctorName = card.querySelector('h2').textContent.toLowerCase();
+      const specialty = card.querySelector('p').textContent.toLowerCase();
+
+      if (doctorName.includes(searchTerm) || specialty.includes(searchTerm)) {
+        card.style.display = 'block';
+        resultsFound = true;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (!resultsFound) {
+      const noResultsMessage = document.createElement('p');
+      noResultsMessage.textContent = 'No results found.';
+      noResultsMessage.className = 'col-span-3 text-center text-gray-500 mt-4';
+      doctorsList.appendChild(noResultsMessage);
+    } else {
+      const existingMessage = doctorsList.querySelector('.col-span-3');
+      if (existingMessage) {
+        existingMessage.remove();
+      }
+    }
+  }
+
+  searchButton.addEventListener('click', performSearch);
+  searchInput.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+      performSearch();
+    }
+  });
+</script>
+
+
+
+</body>
+</html>

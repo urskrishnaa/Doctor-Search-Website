@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login & Sign Up - CareFinder</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-[Inter]">
+
+  <!-- Container -->
+  <div class="flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+      
+      <!-- Tabs -->
+      <div class="flex mb-6 border-b">
+        <button id="loginTab" class="flex-1 py-2 text-blue-600 border-b-2 border-blue-600 font-semibold">Login</button>
+        <button id="signupTab" class="flex-1 py-2 text-gray-600 hover:text-blue-600">Sign Up</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="you@example.com">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Password</label>
+          <input type="password" class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="••••••••">
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Login</button>
+      </form>
+
+      <!-- Sign Up Form (Hidden Initially) -->
+      <form id="signupForm" class="space-y-4 hidden">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Full Name</label>
+          <input type="text" class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="John Doe">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="you@example.com">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Password</label>
+          <input type="password" class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="••••••••">
+        </div>
+        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700">Sign Up</button>
+      </form>
+
+      <!-- Separator -->
+      <div class="flex items-center my-6">
+        <hr class="flex-1 border-gray-300">
+        <span class="px-3 text-gray-500 text-sm">Or login with</span>
+        <hr class="flex-1 border-gray-300">
+      </div>
+
+      <!-- Social Login Buttons -->
+      <div class="space-y-3">
+        <a href="#" class="flex items-center justify-center w-full border rounded-lg py-2 bg-white hover:bg-gray-100">
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5 mr-2">
+          Login with Google
+        </a>
+        <a href="#" class="flex items-center justify-center w-full border rounded-lg py-2 bg-blue-600 text-white hover:bg-blue-700">
+          <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook" class="w-5 h-5 mr-2">
+          Login with Facebook
+        </a>
+        <a href="#" class="flex items-center justify-center w-full border rounded-lg py-2 bg-sky-500 text-white hover:bg-sky-600">
+          <img src="https://www.svgrepo.com/show/475689/twitter-color.svg" alt="Twitter" class="w-5 h-5 mr-2">
+          Login with Twitter
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Tab Switching Script -->
+  <script>
+    const loginTab = document.getElementById("loginTab");
+    const signupTab = document.getElementById("signupTab");
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+
+    loginTab.addEventListener("click", () => {
+      loginForm.classList.remove("hidden");
+      signupForm.classList.add("hidden");
+      loginTab.classList.add("text-blue-600", "border-b-2", "border-blue-600", "font-semibold");
+      signupTab.classList.remove("text-blue-600", "border-b-2", "border-blue-600", "font-semibold");
+      signupTab.classList.add("text-gray-600");
+    });
+
+    signupTab.addEventListener("click", () => {
+      signupForm.classList.remove("hidden");
+      loginForm.classList.add("hidden");
+      signupTab.classList.add("text-blue-600", "border-b-2", "border-blue-600", "font-semibold");
+      loginTab.classList.remove("text-blue-600", "border-b-2", "border-blue-600", "font-semibold");
+      loginTab.classList.add("text-gray-600");
+    });
+  </script>
+
+</body>
+</html>

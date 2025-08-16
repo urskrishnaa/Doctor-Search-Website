@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CareFinder • Find and Book Doctors Nearby</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind config (optional enhancements)
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                200: '#bfdbfe',
+                300: '#93c5fd',
+                400: '#60a5fa',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+                800: '#1e40af',
+                900: '#1e3a8a',
+              }
+            },
+            boxShadow: {
+              soft: '0 10px 30px -10px rgba(2, 6, 23, 0.25)'
+            }
+          }
+        },
+        darkMode: 'class'
+      }
+    </script>
+
+    <meta name="description" content="Search doctors by specialty, city, consultation mode, and book appointments. Built with HTML5 and Tailwind CSS." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🩺</text></svg>">
+
+    <style>
+      /* Smooth scroll for same-page links */
+      html { scroll-behavior: smooth; }
+    </style>
+  </head>
+
+  <body class="bg-slate-50 text-slate-800">
+    <!-- Site Wrapper -->
+    <div class="min-h-screen flex flex-col">
+      <!-- Top Announcement Bar -->
+      <div class="bg-brand-600 text-white text-center text-sm py-2 px-4">
+        🎉 New: Book video consultations with top doctors across India.
+      </div>
+
+      <!-- Header / Navbar -->
+      <header class="sticky top-0 z-40 bg-white/80 backdrop-blur shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <a href="#" class="flex items-center gap-2">
+              <span class="text-2xl">🩺</span>
+              <span class="font-semibold text-lg tracking-tight">CareFinder</span>
+            </a>
+            <div class="hidden md:flex items-center gap-6">
+              <a href="find-doctors.html" class="hover:text-brand-600">Find Doctors</a>
+              <a href="specialties.html" class="hover:text-brand-600">Specialties</a>
+              <a href="clinics.html" class="hover:text-brand-600">Clinics</a>
+              <a href="faq.html" class="hover:text-brand-600">FAQ</a>
+              <a href="login.html" class="px-4 py-2 rounded-xl bg-brand-600 text-white hover:bg-brand-700 shadow-soft">Login</a>
+            </div>
+            <button id="mobileMenuBtn" class="md:hidden inline-flex items-center justify-center p-2 rounded-xl hover:bg-slate-100 focus:outline-none" aria-label="Open menu">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+          </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden border-t bg-white">
+          <div class="px-4 py-3 space-y-3">
+            <a href="find-doctors.html" class="block">Find Doctors</a>
+            <a href="specialties.html" class="block">Specialties</a>
+            <a href="clinics.html" class="block">Clinics</a>
+            <a href="faq.html"block">FAQ</a>
+            <a href="login.html"inline-block px-4 py-2 rounded-xl bg-brand-600 text-white hover:bg-brand-700 shadow-soft">Login</a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="bg-gradient-to-b from-white to-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+          <div class="grid lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+                Find trusted doctors & book appointments in minutes
+              </h1>
+              <p class="mt-4 text-slate-600 text-lg">
+                Search by specialty, city, or hospital. Compare experience, fees, and availability.
+              </p>
+
+              <!-- Search Card -->
+              <div id="search" class="mt-8 bg-white rounded-2xl shadow-soft p-4 sm:p-6">
+                <form id="searchForm" class="grid md:grid-cols-6 gap-3">
+                  <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-slate-700">City</label>
+                    <input id="cityInput" type="text" placeholder="e.g., Mumbai" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand-600 focus:ring-brand-600" />
+                  </div>
+                  <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-slate-700">Specialty</label>
+                    <input id="specialtyInput" type="text" placeholder="e.g., Dermatology" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand-600 focus:ring-brand-600" />
+                  </div>
+                  <div class="md:col-span-1">
+                    <label class="block text-sm font-medium text-slate-700">Mode</label>
+                    <select id="modeInput" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand-600 focus:ring-brand-600">
+                      <option value="any">Any</option>
+                      <option value="in-person">In-person</option>
+                      <option value="video">Video</option>
+                    </select>
+                  </div>
+                  <div class="md:col-span-1 flex items-end">
+                    <button type="submit" class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-brand-600 text-white hover:bg-brand-700 shadow-soft">
+                      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.3-4.3M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
+                      Search
+                    </button>
+                  </div>
+                </form>
+                <div class="mt-3 flex flex-wrap items-center gap-2 text-sm">
+                  <span class="text-slate-600">Popular:</span>
+                  <button data-chip="Dentist" class="chip">Dentist</button>
+                  <button data-chip="Dermatology" class="chip">Dermatology</button>
+                  <button data-chip="Cardiology" class="chip">Cardiology</button>
+                  <button data-chip="Pediatrics" class="chip">Pediatrics</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Illustration -->
+            <div class="relative">
+              <div class="absolute -inset-4 bg-gradient-to-tr from-brand-200 to-brand-400 rounded-3xl blur-2xl opacity-30"></div>
+              <div class="relative bg-white rounded-3xl shadow-soft p-6">
+                <img src="https://images.unsplash.com/photo-1619794555233-e563edf91173?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTA1fHxkb2N0b3JzfGVufDB8fDB8fHww&auto=format&fit=crop" alt="Doctor consultation" class="rounded-2xl object-cover w-full h-72 md:h-96"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+<!-- Specialties -->
+<section id="specialties" class="py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-end justify-between mb-6">
+      <h2 class="text-2xl sm:text-3xl font-bold">Popular Specialties</h2>
+      <a href="find-doctors.html" class="text-brand-700 hover:underline">Browse all →</a>
+    </div>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <!-- cards -->
+      <a href="Dentist.html" class="spec p-4 rounded-2xl bg-white border hover:shadow-soft text-left">🦷 Dentist</a>
+      <a href="dermatology.html" class="spec p-4 rounded-2xl bg-white border hover:shadow-soft text-left">🌿 Dermatology</a>
+      <a href="cardiology.html" class="spec p-4 rounded-2xl bg-white border hover:shadow-soft text-left">❤️ Cardiology</a>
+      <a href="orthopedics.html" class="spec p-4 rounded-2xl bg-white border hover:shadow-soft text-left">🦴 Orthopedics</a>
+      <a href="Gynecology.html" class="spec p-4 rounded-2xl bg-white border hover:shadow-soft text-left">👶 Gynecology</a>
+      <a href="pediatrics.html" class="spec p-4 rounded-2xl bg-white border hover:shadow-soft text-left">🧸 Pediatrics</a>
+    </div>
+  </div>
+</section>
+
+      <!-- Results & Filters -->
+      <main class="flex-1 bg-white">
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div class="grid lg:grid-cols-12 gap-6">
+            <!-- Filters -->
+            <aside class="lg:col-span-3 space-y-4">
+              <div class="p-4 border rounded-2xl">
+                <h3 class="font-semibold mb-3">Filters</h3>
+                <div class="space-y-3">
+                  <label class="flex items-center gap-3">
+                    <input id="nearbyToggle" type="checkbox" class="rounded text-brand-600" />
+                    <span>Show only nearby</span>
+                  </label>
+                  <div>
+                    <label class="block text-sm text-slate-600">Max Consultation Fee (₹)</label>
+                    <input id="feeRange" type="range" min="200" max="1500" value="1500" class="w-full"/>
+                    <div class="text-sm text-slate-600">Up to ₹<span id="feeValue">1500</span></div>
+                  </div>
+                  <div>
+                    <label class="block text-sm text-slate-600">Experience (min years)</label>
+                    <input id="expInput" type="number" min="0" value="0" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand-600 focus:ring-brand-600"/>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 border rounded-2xl">
+                <h3 class="font-semibold mb-3">Sort By</h3>
+                <select id="sortSelect" class="w-full rounded-xl border-slate-300 focus:border-brand-600 focus:ring-brand-600">
+                  <option value="relevance">Relevance</option>
+                  <option value="rating">Rating</option>
+                  <option value="fee-asc">Fee: Low to High</option>
+                  <option value="fee-desc">Fee: High to Low</option>
+                  <option value="exp-desc">Experience</option>
+                </select>
+              </div>
+            </aside>
+
+            <!-- Results -->
+            <section class="lg:col-span-9">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-semibold">Results</h3>
+                <div class="text-sm text-slate-600"><span id="resultCount">0</span> doctors found</div>
+              </div>
+
+              <div id="results" class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+
+              <!-- Empty State -->
+              <div id="emptyState" class="hidden p-8 border rounded-2xl text-center text-slate-600">
+                No doctors match your filters. Try clearing some filters or searching another city/specialty.
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+
+      <!-- Clinics -->
+      <section id="clinics" class="py-12 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-6">Featured Clinics</h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <article class="p-4 bg-white rounded-2xl border shadow-soft">
+              <h3 class="font-semibold">CityCare Multispeciality</h3>
+              <p class="text-sm text-slate-600">Mumbai • 24x7 • Labs, Pharmacy, Thane</p>
+            </article>
+            <article class="p-4 bg-white rounded-2xl border shadow-soft">
+              <h3 class="font-semibold">GreenLeaf Skin & Hair</h3>
+              <p class="text-sm text-slate-600">Bengaluru • Dermatology</p>
+            </article>
+            <article class="p-4 bg-white rounded-2xl border shadow-soft">
+              <h3 class="font-semibold">HeartLine Cardiac Centre</h3>
+              <p class="text-sm text-slate-600">Delhi • Cardiology</p>
+            </article>
+            <article class="p-4 bg-white rounded-2xl border shadow-soft">
+              <h3 class="font-semibold">LittleSteps Pediatrics</h3>
+              <p class="text-sm text-slate-600">Pune • Pediatrics</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="py-12">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-6">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            <details class="p-4 border rounded-2xl bg-white">
+              <summary class="font-semibold cursor-pointer">How do I book an appointment?</summary>
+              <p class="mt-2 text-slate-600">Use the search form to find a doctor, then click “Book Appointment”. You'll select a time and enter your details.</p>
+            </details>
+            <details class="p-4 border rounded-2xl bg-white">
+              <summary class="font-semibold cursor-pointer">Can I do video consultations?</summary>
+              <p class="mt-2 text-slate-600">Yes. Filter by “Mode → Video”. Many doctors offer secure, private video calls.</p>
+            </details>
+            <details class="p-4 border rounded-2xl bg-white">
+              <summary class="font-semibold cursor-pointer">Do you show consultation fees?</summary>
+              <p class="mt-2 text-slate-600">Yes, each profile shows the in-clinic or video fee. Some doctors also provide first-visit discounts.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="mt-auto border-t bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
+            <div>
+              <div class="flex items-center gap-2 mb-2"><span class="text-xl">🩺</span><span class="font-semibold">CareFinder</span></div>
+              <p class="text-slate-600">Your trusted partner for healthcare discovery & bookings.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-2">Company</h4>
+              <ul class="space-y-1 text-slate-600">
+                          
+                <li><a href="about.html"  class="hover:underline">About</a></li>
+                <li><a href="careers.html" class="hover:underline">Careers</a></li>
+                <li><a href="contact.html" class="hover:underline">Contact</a></li>
+
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-2">Support</h4>
+              <ul class="space-y-1 text-slate-600">
+                <li><a href="help.html" class="hover:underline">Help Center</a></li>
+                <li><a href="privacy.html" class="hover:underline">Privacy</a></li>
+                <li><a href="terms.html" class="hover:underline">Terms</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-2">Get the App</h4>
+              <div class="flex gap-2">
+                <a href="#" class="flex-1 p-3 border rounded-xl text-center">Play Store</a>
+                <a href="#" class="flex-1 p-3 border rounded-xl text-center">App Store</a>
+              </div>
+            </div>
+          </div>
+          <p class="mt-6 text-xs text-slate-500">© <span id="y"></span> CareFinder. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Templates & Scripts -->
+    <template id="doctorCardTemplate">
+      <article class="group p-4 border rounded-2xl bg-white hover:shadow-soft transition">
+        <div class="flex items-start gap-4">
+          <img class="w-16 h-16 rounded-xl object-cover" alt="Doctor photo" />
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-2">
+              <h4 class="font-semibold truncate"></h4>
+              <span class="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-700">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <span class="availability">Available</span>
+              </span>
+            </div>
+            <p class="text-sm text-slate-600 specialty"></p>
+            <p class="text-sm text-slate-600">₹<span class="fee"></span> • <span class="mode"></span> • <span class="experience"></span> yrs exp.</p>
+            <p class="text-sm text-slate-600 truncate"><span class="city"></span> • <span class="hospital"></span></p>
+            <div class="mt-3 flex gap-2">
+              <button class="book px-3 py-2 rounded-xl bg-brand-600 text-white hover:bg-brand-700">Button</button>
+              <button class="outline px-3 py-2 rounded-xl border hover:bg-slate-50">View Profile</button>
+
+            </div>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script>
+      // Utility: chips styling
+      document.querySelectorAll('.chip').forEach((btn) => {
+        btn.classList.add('px-3','py-1.5','rounded-full','border','hover:bg-slate-50');
+      });
+      // Utility: spec cards styling
+      document.querySelectorAll('.spec').forEach((btn) => {
+        btn.classList.add('p-4','rounded-2xl','bg-white','border','hover:shadow-soft','text-left');
+      });
+
+      // Mobile menu toggle
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+      // Footer year
+      document.getElementById('y').textContent = new Date().getFullYear();
+
+      // Mock Doctors Data (Replace with API later)
+      const DOCTORS = [
+        {
+          name: 'Dr. Aisha Khan',
+          specialty: 'Dermatology',
+          fee: 700,
+          mode: 'in-person',
+          mode: 'in-video',
+          experience: 8,
+          city: 'Mumbai',
+          hospital: 'GreenLeaf Skin Clinic',
+          photo: 'https://images.unsplash.com/photo-1659353887238-d6c8506a1b5b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          nearby: true,
+          rating: 4.7,
+          available: true
+        },
+        {
+          name: 'Dr. Rohan Mehta',
+          specialty: 'Cardiology',
+          fee: 1200,
+          mode: 'in-person',
+          mode: 'in-video',
+          experience: 15,
+          city: 'Delhi',
+          hospital: 'HeartLine Cardiac Centre',
+          photo: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          nearby: false,
+          rating: 4.9,
+          available: true
+        },
+        {
+          name: 'Dr. Neha Patil',
+          specialty: 'Pediatrics',
+          fee: 600,
+          mode: 'video',
+           mode: 'in-person',
+          experience: 6,
+          city: 'Pune',
+          hospital: 'LittleSteps Pediatrics',
+          photo: 'https://images.unsplash.com/photo-1706958581603-dffa91fec580?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          nearby: true,
+          rating: 4.6,
+          available: false
+        },
+        {
+          name: 'Dr. Kavya Nair',
+          specialty: 'Gynecology',
+          fee: 900,
+          mode: 'video',
+           mode: 'in-person',
+          experience: 10,
+          city: 'Bengaluru',
+          hospital: 'CityCare Multispeciality',
+          photo: 'https://plus.unsplash.com/premium_photo-1677165653258-600290a50dd3?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          nearby: false,
+          rating: 4.5,
+          available: true
+        },
+        {
+          name: 'Dr. Arjun Singh',
+          specialty: 'Orthopedics',
+          fee: 500,
+          mode: 'in-person',
+          mode: 'in-video',
+          experience: 5,
+          city: 'Lucknow',
+          hospital: 'OrthoPlus Hospital',
+          photo: 'https://images.unsplash.com/photo-1659353887977-c310d90c751a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          nearby: true,
+          rating: 4.3,
+          available: true
+        },
+        {
+          name: 'Dr. Meera Rao',
+          specialty: 'Dentist',
+          fee: 400,
+          mode: 'in-person',
+          mode: 'in-video',
+          experience: 12,
+          city: 'Hyderabad',
+          hospital: 'BrightSmile Dental',
+          photo: 'https://plus.unsplash.com/premium_photo-1682089854123-740310ebad43?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          nearby: false,
+          rating: 4.8,
+          available: true
+        }
+      ];
+
+      // DOM Elements
+      const resultsEl = document.getElementById('results');
+      const resultCountEl = document.getElementById('resultCount');
+      const emptyStateEl = document.getElementById('emptyState');
+
+      const cityInput = document.getElementById('cityInput');
+      const specialtyInput = document.getElementById('specialtyInput');
+      const modeInput = document.getElementById('modeInput');
+      const nearbyToggle = document.getElementById('nearbyToggle');
+      const feeRange = document.getElementById('feeRange');
+      const feeValue = document.getElementById('feeValue');
+      const expInput = document.getElementById('expInput');
+      const sortSelect = document.getElementById('sortSelect');
+
+      feeRange.addEventListener('input', () => feeValue.textContent = feeRange.value);
+
+      function filterDoctors() {
+        const city = cityInput.value.trim().toLowerCase();
+        const spec = specialtyInput.value.trim().toLowerCase();
+        const mode = modeInput.value;
+        const nearby = nearbyToggle.checked;
+        const maxFee = Number(feeRange.value);
+        const minExp = Number(expInput.value);
+
+        let list = DOCTORS.filter(d =>
+          (city ? d.city.toLowerCase().includes(city) : true) &&
+          (spec ? d.specialty.toLowerCase().includes(spec) : true) &&
+          (mode === 'any' ? true : d.mode === mode) &&
+          (nearby ? d.nearby : true) &&
+          (d.fee <= maxFee) &&
+          (d.experience >= minExp)
+        );
+
+        // Sorting
+        const sort = sortSelect.value;
+        list.sort((a, b) => {
+          switch (sort) {
+            case 'rating': return b.rating - a.rating;
+            case 'fee-asc': return a.fee - b.fee;
+            case 'fee-desc': return b.fee - a.fee;
+            case 'exp-desc': return b.experience - a.experience;
+            default: return 0; // relevance (none)
+          }
+        });
+
+        renderResults(list);
+      }
+
+      function renderResults(list) {
+        resultsEl.innerHTML = '';
+        resultCountEl.textContent = list.length;
+        emptyStateEl.classList.toggle('hidden', list.length !== 0);
+
+        const tpl = document.getElementById('doctorCardTemplate');
+        list.forEach(d => {
+          const node = tpl.content.cloneNode(true);
+          const img = node.querySelector('img');
+          img.src = d.photo; img.alt = d.name;
+          node.querySelector('h4').textContent = d.name;
+          node.querySelector('.specialty').textContent = d.specialty;
+          node.querySelector('.fee').textContent = d.fee;
+          node.querySelector('.mode').textContent = d.mode === 'video' ? 'Video' : 'In-clinic';
+          node.querySelector('.experience').textContent = d.experience;
+          node.querySelector('.city').textContent = d.city;
+          node.querySelector('.hospital').textContent = d.hospital;
+          node.querySelector('.availability').textContent = d.available ? 'Available' : 'Next day';
+          node.querySelector('.book').addEventListener('click', () => alert(`Booking with ${d.name}... (demo)`));
+          resultsEl.appendChild(node);
+        });
+      }
+
+      // Search form submit & chips
+      document.getElementById('searchForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        filterDoctors();
+        document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      document.querySelectorAll('[data-chip]').forEach(btn => btn.addEventListener('click', () => {
+        specialtyInput.value = btn.dataset.chip;
+        filterDoctors();
+      }));
+
+      document.querySelectorAll('.spec').forEach(btn => btn.addEventListener('click', () => {
+        specialtyInput.value = btn.dataset.spec;
+        document.getElementById('search').scrollIntoView({ behavior: 'smooth' });
+      }));
+
+      // Live filter listeners
+      [modeInput, nearbyToggle, feeRange, expInput, sortSelect].forEach(el => el.addEventListener('input', filterDoctors));
+
+      // Initial render
+      filterDoctors();
+    </script>
+    
+  </body>
+</html>

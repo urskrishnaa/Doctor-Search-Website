@@ -1,0 +1,9 @@
+"https://images.unsplash.com/photo-1584467735871-7d7f1bafb334?q=80&w=1600&auto=format&fit=crop" alt="Doctor consultation" class="rounded-2xl object-cover w-full h-72 md:h-96"/>
+
+
+<img src="https://source.unsplash.com/200x200/?doctor" class="w-32 h-32 rounded-full mx-auto mb-4" alt="">
+
+
+<img src="https://source.unsplash.com/200x200/?surgeon" class="w-32 h-32 rounded-full mx-auto mb-4" alt="">
+
+<img src="https://source.unsplash.com/200x200/?dentist" class="w-32 h-32 rounded-full mx-auto mb-4" alt="">

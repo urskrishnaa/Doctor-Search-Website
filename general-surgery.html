@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>General Surgery Specialists - CareFinder</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold text-blue-600">CareFinder</a>
+      <div class="space-x-4">
+        <a href="find-doctors.html">Find Doctors</a>
+        <a href="specialties.html">Specialties</a>
+        <a href="clinics.html">Clinics</a>
+        <a href="faq.html">FAQ</a>
+        <a href="login.html">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="bg-blue-600 text-white py-12 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl font-bold mb-4">General Surgery Specialists</h1>
+      <p class="text-xl">Expert surgical care for a wide range of conditions</p>
+    </div>
+  </header>
+
+  <!-- Doctors List -->
+  <section class="max-w-7xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold mb-8 text-center">Our Top General Surgeons</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Doctor 1 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80" class="w-full h-48 object-cover" alt="Dr. Amanda Johnson">
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2">Dr. Krishna Thakur</h3>
+          <p class="text-gray-600 mb-4">Specializes in minimally invasive surgery with 15 years of experience.</p>
+          <button onclick="openAppointmentForm('Dr. Krishna Thakur')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Book Appointment</button>
+        </div>
+      </div>
+
+      <!-- Doctor 2 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80" class="w-full h-48 object-cover" alt="Dr. Michael Chen">
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2">Dr. Rohan Mehta</h3>
+          <p class="text-gray-600 mb-4">Expert in laparoscopic and robotic surgery techniques.</p>
+          <button onclick="openAppointmentForm('Dr. Rohan Mehta')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Book Appointment</button>
+        </div>
+      </div>
+
+      <!-- Doctor 3 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80" class="w-full h-48 object-cover" alt="Dr. Sarah Patel">
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2">Dr. Sarah Patel</h3>
+          <p class="text-gray-600 mb-4">Specializes in gastrointestinal and oncologic surgery.</p>
+          <button onclick="openAppointmentForm('Dr. Sarah Patel')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Book Appointment</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Appointment Form Modal -->
+  <div id="appointmentModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
+      <h2 class="text-2xl font-bold mb-4">Book an Appointment</h2>
+      <form id="appointmentForm">
+        <input type="hidden" id="doctorName" name="doctorName">
+        <div class="mb-4">
+          <label for="patientName" class="block text-gray-700 font-bold mb-2">Your Name</label>
+          <input type="text" id="patientName" name="patientName" class="w-full px-3 py-2 border rounded-lg" required>
+        </div>
+        <div class="mb-4">
+          <label for="appointmentDate" class="block text-gray-700 font-bold mb-2">Preferred Date</label>
+          <input type="date" id="appointmentDate" name="appointmentDate" class="w-full px-3 py-2 border rounded-lg" required>
+        </div>
+        <div class="mb-4">
+          <label for="appointmentTime" class="block text-gray-700 font-bold mb-2">Preferred Time</label>
+          <input type="time" id="appointmentTime" name="appointmentTime" class="w-full px-3 py-2 border rounded-lg" required>
+        </div>
+        <div class="flex justify-end">
+          <button type="button" onclick="closeAppointmentForm()" class="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg mr-2">Cancel</button>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Book Appointment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between">
+      <div class="w-full md:w-1/3 mb-6 md:mb-0">
+        <h3 class="text-2xl font-bold mb-4">CareFinder</h3>
+        <p>Your trusted partner in healthcare.</p>
+      </div>
+      <div class="w-full md:w-1/3 mb-6 md:mb-0">
+        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="about.html" class="hover:text-blue-300">About Us</a></li>
+          <li><a href="contact.html" class="hover:text-blue-300">Contact</a></li>
+          <li><a href="privacy.html" class="hover:text-blue-300">Privacy Policy</a></li>
+          <li><a href="terms.html" class="hover:text-blue-300">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="w-full md:w-1/3">
+        <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-blue-300">Facebook</a>
+          <a href="#" class="hover:text-blue-300">Twitter</a>
+          <a href="#" class="hover:text-blue-300">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function openAppointmentForm(doctorName) {
+      document.getElementById('doctorName').value = doctorName;
+      document.getElementById('appointmentModal').classList.remove('hidden');
+      document.getElementById('appointmentModal').classList.add('flex');
+    }
+
+    function closeAppointmentForm() {
+      document.getElementById('appointmentModal').classList.add('hidden');
+      document.getElementById('appointmentModal').classList.remove('flex');
+    }
+
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Here you would typically send the form data to a server
+      // For this example, we'll just show an alert
+      alert('Appointment request submitted! We will contact you to confirm.');
+      closeAppointmentForm();
+    });
+  </script>
+
+</body>
+</html>
